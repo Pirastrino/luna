@@ -1,0 +1,42 @@
+<?php
+/**
+ * Plugin Name:       Luna
+ * Description:       Various blocks inspired by Spectra.
+ * Version:           0.1.0
+ * Requires at least: 6.2
+ * Requires PHP:      7.0
+ * Author:            The WordPress Contributors
+ * License:           GPL-2.0-or-later
+ * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
+ * Text Domain:       luna
+ *
+ * @package           luna
+ */
+
+if (!defined('ABSPATH')) {
+  exit(); // Exit if accessed directly.
+}
+
+/**
+ * Registers the block using the metadata loaded from the `block.json` file.
+ * Behind the scenes, it registers also all assets so they can be enqueued
+ * through the block editor in the corresponding context.
+ *
+ * @see https://developer.wordpress.org/reference/functions/register_block_type/
+ */
+function luna_register_blocks()
+{
+  $blocks_dir = __DIR__ . '/build/blocks/';
+
+  // Get all block directories.
+  $block_folders = glob($blocks_dir . '*', GLOB_ONLYDIR);
+
+  foreach ($block_folders as $block_folder) {
+    $block_json = $block_folder . '/block.json';
+
+    if (file_exists($block_json)) {
+      register_block_type($block_folder);
+    }
+  }
+}
+add_action('init', 'luna_register_blocks');
