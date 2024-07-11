@@ -4,7 +4,7 @@
   "name": "luna/copyright-date",
   "version": "0.1.0",
   "title": "Copyright Date",
-  "category": "widgets",
+  "category": "luna",
   "description": "Display your site's copyright date.",
   "example": {},
   "attributes": {

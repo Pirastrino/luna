@@ -1,8 +1,8 @@
 {
   "name": "luna",
   "version": "0.1.0",
-  "description": "Display your site's copyright date.",
-  "author": "The WordPress Contributors",
+  "description": "Advance gutenberg blocks",
+  "author": "Pirastrino | https://github.com/Pirastrino",
   "license": "GPL-2.0-or-later",
   "main": "build/index.js",
   "scripts": {

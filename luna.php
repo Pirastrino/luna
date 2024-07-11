@@ -17,6 +17,20 @@ if (!defined('ABSPATH')) {
   exit(); // Exit if accessed directly.
 }
 
+function get_all_categories($categories)
+{
+  return array_merge(
+    [
+      [
+        'slug' => 'luna',
+        'title' => 'Luna',
+      ],
+    ],
+    $categories
+  );
+}
+add_filter('block_categories_all', 'get_all_categories');
+
 /**
  * Registers the block using the metadata loaded from the `block.json` file.
  * Behind the scenes, it registers also all assets so they can be enqueued
