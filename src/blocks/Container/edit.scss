@@ -1,0 +1,33 @@
+@import '../../theme/index.scss';
+
+.luna-inspector-tabs-container {
+  width: 100%;
+
+
+  div[role=tablist] {
+    height: 65px;
+    display: flex;
+    align-items: stretch;
+    -webkit-box-align: stretch;
+  }
+}
+
+.luna-inspector-tab {
+  flex: 1 1 33.3333%;
+  box-sizing: border-box;
+  height: 100%;
+  color: #585858;
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 24px;
+
+    h5 {
+      font-weight: 500;
+      font-size: 0.5em;
+      margin: 6px 0 0 0;
+    }
+  }
+}
