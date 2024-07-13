@@ -1,20 +1,15 @@
 import { useState } from 'react';
 import { __ } from '@wordpress/i18n';
-import {
-  // ColorIndicator,
-  // ColorPicker,
-  PanelBody,
-  // Popover,
-} from '@wordpress/components';
+import { PanelBody } from '@wordpress/components';
 import {
   Attributes,
   attributes as attributesSettings,
   ColorAttributes,
-  GeneralProps,
+  EditProps,
 } from '../attributes';
 import { ColorPicker } from '../../../controls';
 
-const Style: React.FC<GeneralProps> = ({ attributes, setAttributes }) => {
+const Style: React.FC<EditProps> = ({ attributes, setAttributes }) => {
   const [popover, setPopover] = useState<ColorAttributes | undefined>(
     undefined,
   );

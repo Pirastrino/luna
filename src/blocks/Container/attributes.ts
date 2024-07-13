@@ -1,3 +1,4 @@
+import { BlockEditProps, BlockSaveProps } from '@wordpress/blocks';
 import { Attribute } from 'src/types';
 import { general } from './settings';
 
@@ -117,11 +118,12 @@ type Colors = Pick<
   'backgroundColor' | 'textColor' | 'linkColor' | 'linkColorHover'
 >;
 
+// TODO: Extract types to types.ts
+
 export type ColorAttributes = keyof Colors;
 
-export type GeneralProps = {
-  attributes: Attributes;
-  setAttributes: (attributes: Partial<Attributes>) => void;
-};
+export type EditProps = BlockEditProps<Attributes>;
+
+export type SaveProps = BlockSaveProps<Attributes>;
 
 export default attributes;

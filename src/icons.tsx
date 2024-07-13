@@ -60,6 +60,24 @@ const Pallete = (
   </svg>
 );
 
+const Plus = (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="1em"
+    height="1em"
+    viewBox="0 0 24 24"
+  >
+    <path
+      fill="none"
+      stroke="currentColor"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="2"
+      d="M5 12h14m-7-7v14"
+    />
+  </svg>
+);
+
 const RotateCCW = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -105,6 +123,7 @@ const Lucide = {
   LayoutTemplate,
   General,
   Pallete,
+  Plus,
   RotateCCW,
   Settings,
 };

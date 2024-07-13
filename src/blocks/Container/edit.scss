@@ -3,8 +3,7 @@
 .luna-inspector-tabs-container {
   width: 100%;
 
-
-  div[role=tablist] {
+  div[role='tablist'] {
     height: 65px;
     display: flex;
     align-items: stretch;
@@ -29,5 +28,17 @@
       font-size: 0.5em;
       margin: 6px 0 0 0;
     }
+  }
+}
+
+.luna-edit-container {
+  &::before {
+    content: '';
+    position: absolute;
+    border: 1px dashed #d5dadf;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
   }
 }

@@ -1,22 +1,41 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { __ } from '@wordpress/i18n';
+import { BlockEditProps } from '@wordpress/blocks';
 import {
   InnerBlocks,
   InspectorControls,
   useBlockProps,
 } from '@wordpress/block-editor';
+import { useSelect } from '@wordpress/data';
 import { TabPanel } from '@wordpress/components';
+import { BlockInstance } from '@wordpress/blocks';
 import { Attributes } from './attributes';
 import { General, Style, tabs } from './Settings';
 import './edit.scss';
 
-type Props = {
-  attributes: Attributes;
-  setAttributes: (attributes: Partial<Attributes>) => void;
-};
+const ALLOWED_BLOCKS = ['core/paragraph', 'core/image']; // List of allowed inner blocks
+const TEMPLATE: [string, Record<string, any>][] = [
+  ['core/paragraph', { placeholder: 'Enter text...' }],
+  ['core/image', {}],
+];
 
-const Edit: React.FC<Props> = (props) => {
-  const { attributes, setAttributes } = props;
+const Edit: React.FC<BlockEditProps<Attributes>> = (props) => {
+  const [hasInnerBlocks, setHasInnerBlocks] = useState(false);
+
+  const { attributes, clientId } = props;
+
+  const innerBlocks = useSelect(
+    (
+      select: (key: 'core/block-editor') => {
+        getBlocks: (clientId: string) => BlockInstance[];
+      },
+    ) => select('core/block-editor').getBlocks(clientId),
+    [clientId],
+  );
+
+  useEffect(() => {
+    setHasInnerBlocks(innerBlocks.length > 0);
+  }, [innerBlocks]);
 
   useEffect(() => {
     console.log(attributes);
@@ -71,9 +90,23 @@ const Edit: React.FC<Props> = (props) => {
         </TabPanel>
       </InspectorControls>
       <div {...useBlockProps({ style: styleContainer })}>
-        TEST
-        <div {...useBlockProps({ style: styleContentWrapper })}>
-          LUNA CONTAINER
+        <div className={`${hasInnerBlocks ? '' : 'luna-edit-container'}`}>
+          <div {...useBlockProps({ style: styleContentWrapper })}>
+            <div className="luna-p-2">
+              <InnerBlocks
+                allowedBlocks={ALLOWED_BLOCKS}
+                renderAppender={() => {
+                  return hasInnerBlocks ? (
+                    <InnerBlocks.DefaultBlockAppender />
+                  ) : (
+                    <InnerBlocks.ButtonBlockAppender />
+                  );
+                }}
+                // template={TEMPLATE}
+                // templateLock={false}
+              />
+            </div>
+          </div>
         </div>
       </div>
     </>
