@@ -16,7 +16,7 @@ const ButtonGroup: React.FC<Props> = ({
     <ButtonGroupWP className="luna-flex luna-text-sm">
       {buttons.map((button) => {
         const isActive = button.value === selectedValue;
-        const className = `${isActive ? 'is_active' : ''} luna-flex-1 luna-justify-center luna-p-1`;
+        const className = `${isActive ? 'is_active' : ''} luna-flex-1 luna-justify-center luna-p-1 luna-max-h-[30px]`;
 
         return (
           <ButtonWP

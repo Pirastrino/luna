@@ -10,6 +10,7 @@ import {
   getOptionsFromEnum,
   getOnChangeHandler,
 } from '../../../utils';
+import Layout from './Layout';
 
 type Props = {
   attributes: Attributes;
@@ -165,7 +166,7 @@ const General: React.FC<Props> = ({ attributes, setAttributes }) => {
         </div>
       </PanelBody>
       <PanelBody title={__('Layout', 'layout')} initialOpen={false}>
-        TBD
+        <Layout attributes={attributes} setAttributes={setAttributes} />
       </PanelBody>
     </>
   );

@@ -62,6 +62,11 @@ export const attributes = {
     ] as const,
     default: 'div',
   },
+  layoutType: {
+    type: 'string',
+    enum: ['flex', 'grid'] as const,
+    default: 'flex',
+  },
 } satisfies { [key: string]: Attribute };
 
 type BlockAttributes = typeof attributes;
@@ -78,6 +83,7 @@ export type Attributes = {
   overflowX: BlockAttributes['overflowX']['enum'][number];
   overflowY: BlockAttributes['overflowY']['enum'][number];
   htmlTag: BlockAttributes['htmlTag']['enum'][number];
+  layoutType: BlockAttributes['layoutType']['enum'][number];
 };
 
 export default attributes;
