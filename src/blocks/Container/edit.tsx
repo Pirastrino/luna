@@ -7,7 +7,7 @@ import {
 } from '@wordpress/block-editor';
 import { TabPanel } from '@wordpress/components';
 import { Attributes } from './attributes';
-import { General, tabs } from './Settings';
+import { General, Style, tabs } from './Settings';
 import './edit.scss';
 
 type Props = {
@@ -20,7 +20,7 @@ const Edit: React.FC<Props> = (props) => {
 
   useEffect(() => {
     console.log(attributes);
-  }, [attributes.containerWidth, attributes.customWidth, attributes.minHeight]);
+  }, [attributes.backgroundColor]);
 
   // TODO: Proof of concept. Extract to utils:
   const styleContainer = {
@@ -35,6 +35,11 @@ const Edit: React.FC<Props> = (props) => {
     minHeight: `${attributes.minHeight}${attributes.minHeightUnit}`,
     overflowX: attributes.overflowX,
     overflowY: attributes.overflowY,
+    backgroundColor:
+      attributes.backgroundColor === 'none'
+        ? 'transparent'
+        : attributes.backgroundColor,
+    color: attributes.textColor,
   };
 
   const styleContentWrapper = {
@@ -56,13 +61,17 @@ const Edit: React.FC<Props> = (props) => {
           {(tab) => {
             const name = tab.name as keyof typeof tabs;
 
-            if (name === 'general') {
-              return <General {...props} />;
+            switch (name) {
+              case 'general':
+                return <General {...props} />;
+              case 'style':
+                return <Style {...props} />;
             }
           }}
         </TabPanel>
       </InspectorControls>
       <div {...useBlockProps({ style: styleContainer })}>
+        TEST
         <div {...useBlockProps({ style: styleContentWrapper })}>
           LUNA CONTAINER
         </div>

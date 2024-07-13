@@ -1,6 +1,10 @@
 import { __ } from '@wordpress/i18n';
 import { PanelBody, SelectControl } from '@wordpress/components';
-import { attributes as attributesSettings, Attributes } from '../attributes';
+import {
+  attributes as attributesSettings,
+  Attributes,
+  GeneralProps,
+} from '../attributes';
 import { general } from '../settings';
 import { ButtonGroup, RangeControl } from '../../../controls';
 import { units } from '../../../constants';
@@ -12,12 +16,7 @@ import {
 } from '../../../utils';
 import Layout from './Layout';
 
-type Props = {
-  attributes: Attributes;
-  setAttributes: (attributes: Partial<Attributes>) => void;
-};
-
-const General: React.FC<Props> = ({ attributes, setAttributes }) => {
+const General: React.FC<GeneralProps> = ({ attributes, setAttributes }) => {
   const handleChange = getOnChangeHandler(setAttributes);
 
   const onCustomWidthUnitChange = (value?: string | number) => {

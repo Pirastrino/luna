@@ -67,6 +67,27 @@ export const attributes = {
     enum: ['flex', 'grid'] as const,
     default: 'flex',
   },
+  backgroundType: {
+    type: 'string',
+    enum: ['color', 'gradient'] as const,
+    default: 'color',
+  },
+  backgroundColor: {
+    type: 'string',
+    default: 'none',
+  },
+  textColor: {
+    type: 'string',
+    default: 'black',
+  },
+  linkColor: {
+    type: 'string',
+    default: 'blue',
+  },
+  linkColorHover: {
+    type: 'string',
+    default: 'blue',
+  },
 } satisfies { [key: string]: Attribute };
 
 type BlockAttributes = typeof attributes;
@@ -84,6 +105,23 @@ export type Attributes = {
   overflowY: BlockAttributes['overflowY']['enum'][number];
   htmlTag: BlockAttributes['htmlTag']['enum'][number];
   layoutType: BlockAttributes['layoutType']['enum'][number];
+  backgroundType: BlockAttributes['backgroundType']['enum'][number];
+  backgroundColor: BlockAttributes['backgroundColor']['default'];
+  textColor: BlockAttributes['textColor']['default'];
+  linkColor: BlockAttributes['linkColor']['default'];
+  linkColorHover: BlockAttributes['linkColorHover']['default'];
+};
+
+type Colors = Pick<
+  Attributes,
+  'backgroundColor' | 'textColor' | 'linkColor' | 'linkColorHover'
+>;
+
+export type ColorAttributes = keyof Colors;
+
+export type GeneralProps = {
+  attributes: Attributes;
+  setAttributes: (attributes: Partial<Attributes>) => void;
 };
 
 export default attributes;

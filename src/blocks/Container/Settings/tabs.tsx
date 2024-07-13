@@ -1,4 +1,4 @@
-import { Lucide } from '../../icons';
+import { Lucide } from '../../../icons';
 
 export default {
   general: {

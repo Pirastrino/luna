@@ -1,4 +1,8 @@
-import { attributes as attributesSettings, Attributes } from '../attributes';
+import {
+  attributes as attributesSettings,
+  Attributes,
+  GeneralProps,
+} from '../attributes';
 import { ButtonGroup, RangeControl } from '../../../controls';
 import {
   formatLabel,
@@ -6,12 +10,7 @@ import {
   getOnChangeHandler,
 } from '../../../utils';
 
-type Props = {
-  attributes: Attributes;
-  setAttributes: (attributes: Partial<Attributes>) => void;
-};
-
-const Layout: React.FC<Props> = ({ attributes, setAttributes }) => {
+const Layout: React.FC<GeneralProps> = ({ attributes, setAttributes }) => {
   const handleChange = getOnChangeHandler(setAttributes);
 
   const layoutTypeButtons = getButtonsFromEnum(

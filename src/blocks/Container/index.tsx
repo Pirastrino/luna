@@ -4,7 +4,7 @@ import Edit from './edit';
 import save from './save';
 import attributes from './attributes';
 import metadata from './block.json';
-import { Lucide } from '../icons';
+import { Lucide } from '../../icons';
 
 registerBlockType(metadata.name, {
   editorStyle: 'file:../../index.css',
