@@ -5,6 +5,7 @@ import {
   InnerBlocks,
   InspectorControls,
   useBlockProps,
+  useInnerBlocksProps,
 } from '@wordpress/block-editor';
 import { useSelect } from '@wordpress/data';
 import { TabPanel } from '@wordpress/components';
@@ -59,6 +60,11 @@ const Edit: React.FC<BlockEditProps<Attributes>> = (props) => {
         ? 'transparent'
         : attributes.backgroundColor,
     color: attributes.textColor,
+    display: attributes.display,
+    flexWrap: attributes.flexWrap,
+    flexDirection: attributes.flexDirection,
+    justifyContent: attributes.justifyContent,
+    alignItems: attributes.alignItems,
   };
 
   const styleContentWrapper = {
@@ -67,7 +73,16 @@ const Edit: React.FC<BlockEditProps<Attributes>> = (props) => {
       attributes.contentWidth === 'boxed'
         ? `${attributes.contentBoxWidth}${attributes.contentBoxWidthUnit}`
         : '100%',
+    display: attributes.display,
+    flexWrap: attributes.flexWrap,
+    flexDirection: attributes.flexDirection,
+    justifyContent: attributes.justifyContent,
+    alignItems: attributes.alignItems,
   };
+
+  const { children, ...innerBlocksProps } = useInnerBlocksProps({
+    style: styleContentWrapper,
+  });
 
   return (
     <>
@@ -90,25 +105,27 @@ const Edit: React.FC<BlockEditProps<Attributes>> = (props) => {
         </TabPanel>
       </InspectorControls>
       <div {...useBlockProps({ style: styleContainer })}>
-        <div className={`${hasInnerBlocks ? '' : 'luna-edit-container'}`}>
-          <div {...useBlockProps({ style: styleContentWrapper })}>
-            <div className="luna-p-2">
-              <InnerBlocks
-                allowedBlocks={ALLOWED_BLOCKS}
-                renderAppender={() => {
-                  return hasInnerBlocks ? (
-                    <InnerBlocks.DefaultBlockAppender />
-                  ) : (
-                    <InnerBlocks.ButtonBlockAppender />
-                  );
-                }}
-                // template={TEMPLATE}
-                // templateLock={false}
-              />
-            </div>
-          </div>
-        </div>
+        {children ? (
+          <div {...innerBlocksProps}>{children}</div>
+        ) : (
+          <InnerBlocks
+            allowedBlocks={ALLOWED_BLOCKS}
+            renderAppender={() => {
+              return hasInnerBlocks ? (
+                <InnerBlocks.DefaultBlockAppender />
+              ) : (
+                <InnerBlocks.ButtonBlockAppender />
+              );
+            }}
+            // template={TEMPLATE}
+            // templateLock={false}
+          />
+        )}
       </div>
+
+      {/* </div> */}
+      {/* </div> */}
+      {/* </div> */}
     </>
   );
 };

@@ -21,6 +21,11 @@ const save: React.FC<BlockSaveProps<Attributes>> = ({ attributes }) => {
         ? 'transparent'
         : attributes.backgroundColor,
     color: attributes.textColor,
+    display: attributes.display,
+    flexWrap: attributes.flexWrap,
+    flexDirection: attributes.flexDirection,
+    justifyContent: attributes.justifyContent,
+    alignItems: attributes.alignItems,
   };
 
   const styleContentWrapper = {

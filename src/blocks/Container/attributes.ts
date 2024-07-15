@@ -89,6 +89,55 @@ export const attributes = {
     type: 'string',
     default: 'blue',
   },
+  display: {
+    type: 'string',
+    enum: ['flex', 'grid'] as const,
+    default: 'flex',
+  },
+  flexDirection: {
+    type: 'string',
+    enum: ['row', 'row-reverse', 'column', 'column-reverse'] as const,
+    default: 'row',
+  },
+  flexWrap: {
+    type: 'string',
+    enum: ['nowrap', 'wrap', 'wrap-reverse'] as const,
+    default: 'nowrap',
+  },
+  justifyContent: {
+    type: 'string',
+    enum: [
+      'normal',
+      'flex-start',
+      'flex-end',
+      'center',
+      'space-between',
+      'space-around',
+      'space-evenly',
+      'stretch',
+    ] as const,
+    default: 'normal',
+  },
+  alignContent: {
+    type: 'string',
+    enum: [
+      'normal',
+      'flex-start',
+      'flex-end',
+      'center',
+      'space-between',
+      'space-around',
+      'space-evenly',
+      'baseline',
+      'stretch',
+    ] as const,
+    default: 'normal',
+  },
+  alignItems: {
+    type: 'string',
+    enum: ['flex-start', 'flex-end', 'center', 'baseline', 'stretch'] as const,
+    default: 'flex-start',
+  },
 } satisfies { [key: string]: Attribute };
 
 type BlockAttributes = typeof attributes;
@@ -111,6 +160,12 @@ export type Attributes = {
   textColor: BlockAttributes['textColor']['default'];
   linkColor: BlockAttributes['linkColor']['default'];
   linkColorHover: BlockAttributes['linkColorHover']['default'];
+  display: BlockAttributes['display']['enum'][number];
+  flexDirection: BlockAttributes['flexDirection']['enum'][number];
+  flexWrap: BlockAttributes['flexWrap']['enum'][number];
+  justifyContent: BlockAttributes['justifyContent']['enum'][number];
+  alignContent: BlockAttributes['alignContent']['enum'][number];
+  alignItems: BlockAttributes['alignItems']['enum'][number];
 };
 
 type Colors = Pick<
